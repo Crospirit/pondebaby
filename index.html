@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pondebaby - Calculadora de Peso</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background-color: #f0f8ff;
+            color: #333;
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #4CAF50;
+        }
+
+        h2 {
+            text-align: center;
+            color: #008CBA;
+            font-size: 1.2rem;
+            margin-top: -10px;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            color: #333;
+        }
+
+        input[type="number"], button {
+            width: 50%; /* Reducido para 4-5 dígitos */
+            padding: 8px;
+            margin-top: 5px;
+            border-radius: 8px;
+            border: 2px solid #4CAF50;
+            font-size: 14px;
+        }
+
+        input[type="date"] {
+            width: 70%;
+            padding: 8px;
+            margin-top: 5px;
+            border-radius: 8px;
+            border: 2px solid #4CAF50;
+            font-size: 14px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        button {
+            margin-top: 20px;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .result {
+            margin-top: 20px;
+            background-color: #e0f7fa;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #4CAF50;
+            display: none; /* Ocultamos los resultados inicialmente */
+        }
+
+        .result p {
+            font-size: 18px;
+            color: #333;
+        }
+
+        #copiarBtn {
+            background-color: #008CBA;
+        }
+
+        #copiarBtn:hover {
+            background-color: #007bb5;
+        }
+
+        .info {
+            margin-top: 20px;
+            background-color: #fff3cd;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ffeeba;
+        }
+
+        .info p {
+            font-size: 14px;
+            color: #856404;
+        }
+
+        .info a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #4CAF50;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        td {
+            background-color: #f9f9f9;
+        }
+
+        #tablasSeccion {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .btnToggle {
+            background-color: #f0ad4e;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            display: block;
+            margin: 20px auto;
+        }
+
+        .btnToggle:hover {
+            background-color: #ec971f;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Pondebaby</h1>
+    <h2>Calcula la ganancia o pérdida de peso entre dos fechas</h2>
+
+    <label for="pesoInicio">Introduce el peso en la fecha inicial (kg):</label>
+    <input type="number" id="pesoInicio" placeholder="Ej. 3.500" step="0.001" min="0" required>
+
+    <label for="fechaInicio">Introduce la fecha inicial:</label>
+    <input type="date" id="fechaInicio" required>
+
+    <label for="fechaActual">Introduce la fecha del pesaje actual:</label>
+    <input type="date" id="fechaActual" required>
+
+    <label for="pesoActual">Introduce el peso actual (kg):</label>
+    <input type="number" id="pesoActual" placeholder="Ej. 4.200" step="0.001" min="0" required>
+
+    <button onclick="calcular()">Calcular</button>
+
+    <div class="result" id="resultados">
+        <p><strong>Ganancia/Pérdida de peso:</strong> <span id="resultadoGramos">0</span> gramos</p>
+        <p><strong>Porcentaje de ganancia/pérdida de peso:</strong> <span id="resultadoPorcentaje">0.0</span>%</p>
+        <p><strong>Ganancia/Pérdida de peso por día:</strong> <span id="resultadoDiario">0</span> gramos/día</p>
+        <p><strong>Número de días entre los pesajes:</strong> <span id="resultadoDias">0</span> días</p>
+    </div>
+
+    <button id="copiarBtn" onclick="copiarResultados()">Copiar Resultados</button>
+
+    <button class="btnToggle" onclick="toggleTablas()">Tablas</button>
+
+    <div id="tablasSeccion">
+        <!-- Tabla de la AEPED -->
+        <div class="info">
+            <p><strong>Una ganancia de peso inferior a lo esperado para la edad:</strong></p>
+            <p>26-31 g/día entre 0 y 3 meses</p>
+            <p>17-18 g/día entre 3 y 6 meses</p>
+            <p>12-13 g/día entre 6 y 9 meses</p>
+            <p>9-13 g/día entre 9 y 12 meses</p>
+            <p>7-9 g/día entre 1 y 3 años</p>
+            <p>Fuente: <a href="https://www.aeped.es/sites/default/files/documentos/40_fallo_medro.pdf" target="_blank">Asociación Española de Pediatría</a></p>
+        </div>
+
+        <!-- Tabla de la OMS - Peso para la edad -->
+        <table>
+            <tr>
+                <th>Edad (Meses)</th>
+                <th>Percentil 3 (Niños)</th>
+                <th>Percentil 50 (Niños)</th>
+                <th>Percentil 97 (Niños)</th>
+                <th>Percentil 3 (Niñas)</th>
+                <th>Percentil 50 (Niñas)</th>
+                <th>Percentil 97 (Niñas)</th>
+            </tr>
+            <tr>
+                <td>0</td>
+                <td>2.4</td>
+                <td>3.3</td>
+                <td>4.4</td>
+                <td>2.4</td>
+                <td>3.2</td>
+                <td>4.2</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>3.2</td>
+                <td>4.5</td>
+                <td>5.8</td>
+                <td>3.0</td>
+                <td>4.2</td>
+                <td>5.5</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>4.0</td>
+                <td>5.6</td>
+                <td>7.1</td>
+                <td>3.8</td>
+                <td>5.1</td>
+                <td>6.6</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>4.6</td>
+                <td>6.4</td>
+                <td>7.9</td>
+                <td>4.4</td>
+                <td>5.8</td>
+                <td>7.5</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>5.1</td>
+                <td>7.0</td>
+                <td>8.6</td>
+                <td>4.9</td>
+                <td>6.4</td>
+                <td>8.2</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>5.5</td>
+                <td>7.5</td>
+                <td>9.2</td>
+                <td>5.3</td>
+                <td>6.9</td>
+                <td>8.8</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>5.8</td>
+                <td>7.9</td>
+                <td>9.7</td>
+                <td>5.7</td>
+                <td>7.3</td>
+                <td>9.3</td>
+            </tr>
+            <!-- Aquí puedes continuar con más filas si lo deseas -->
+        </table>
+
+        <div class="info">
+            <p>Fuente: <a href="https://www.who.int/tools/child-growth-standards/standards/weight-for-age" target="_blank">Organización Mundial de la Salud</a></p>
+        </div>
+    </div>
+
+    <script>
+        function calcular() {
+            let pesoInicio = parseFloat(document.getElementById("pesoInicio").value);
+            let fechaInicio = new Date(document.getElementById("fechaInicio").value);
+            let pesoActual = parseFloat(document.getElementById("pesoActual").value);
+            let fechaActual = new Date(document.getElementById("fechaActual").value);
+
+            let diasTranscurridos = (fechaActual - fechaInicio) / (1000 * 60 * 60 * 24); // Milisegundos a días
+            let gananciaPeso = (pesoActual - pesoInicio) * 1000; // kg a gramos
+            let gananciaDiaria = gananciaPeso / diasTranscurridos;
+
+            document.getElementById("resultadoGramos").textContent = gananciaPeso.toFixed(2);
+            document.getElementById("resultadoPorcentaje").textContent = ((gananciaPeso / (pesoInicio * 1000)) * 100).toFixed(2);
+            document.getElementById("resultadoDiario").textContent = gananciaDiaria.toFixed(2);
+            document.getElementById("resultadoDias").textContent = Math.floor(diasTranscurridos);
+
+            document.getElementById("resultados").style.display = "block";
+        }
+
+        function copiarResultados() {
+            let resultados = `Ganancia/Pérdida de peso: ${document.getElementById("resultadoGramos").textContent} gramos\n`;
+            resultados += `Porcentaje de ganancia/pérdida de peso: ${document.getElementById("resultadoPorcentaje").textContent}%\n`;
+            resultados += `Ganancia/Pérdida de peso por día: ${document.getElementById("resultadoDiario").textContent} gramos/día\n`;
+            resultados += `Número de días entre los pesajes: ${document.getElementById("resultadoDias").textContent} días\n`;
+
+            navigator.clipboard.writeText(resultados).then(() => {
+                alert("Resultados copiados al portapapeles");
+            }).catch(err => {
+                alert("Hubo un error al copiar los resultados: " + err);
+            });
+        }
+
+        function toggleTablas() {
+            let tablasSeccion = document.getElementById("tablasSeccion");
+            if (tablasSeccion.style.display === "none" || tablasSeccion.style.display === "") {
+                tablasSeccion.style.display = "block";
+            } else {
+                tablasSeccion.style.display = "none";
+            }
+        }
+    </script>
+
+</body>
+</html>
