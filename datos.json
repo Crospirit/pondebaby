@@ -1,0 +1,129 @@
+{
+  "peso_para_edad": [
+    {
+      "edad": "Semana 0",
+      "ninos": { "P3": 2.4, "P25": 2.9, "P50": 3.3, "P75": 3.8, "P97": 4.4 },
+      "ninas": { "P3": 2.4, "P25": 2.8, "P50": 3.2, "P75": 3.6, "P97": 4.2 }
+    },
+    {
+      "edad": "Semana 1",
+      "ninos": { "P3": 3.2, "P25": 3.6, "P50": 4.1, "P75": 4.6, "P97": 5.1 },
+      "ninas": { "P3": 3.1, "P25": 3.5, "P50": 4.0, "P75": 4.5, "P97": 5.0 }
+    },
+    {
+      "edad": "Semana 2",
+      "ninos": { "P3": 3.9, "P25": 4.4, "P50": 5.0, "P75": 5.6, "P97": 6.2 },
+      "ninas": { "P3": 3.7, "P25": 4.2, "P50": 4.8, "P75": 5.4, "P97": 6.0 }
+    },
+    {
+      "edad": "Semana 3",
+      "ninos": { "P3": 4.5, "P25": 5.1, "P50": 5.8, "P75": 6.4, "P97": 7.1 },
+      "ninas": { "P3": 4.4, "P25": 5.0, "P50": 5.6, "P75": 6.2, "P97": 6.9 }
+    },
+    {
+      "edad": "Semana 4",
+      "ninos": { "P3": 5.1, "P25": 5.8, "P50": 6.5, "P75": 7.1, "P97": 7.8 },
+      "ninas": { "P3": 5.0, "P25": 5.7, "P50": 6.4, "P75": 7.1, "P97": 7.6 }
+    },
+    {
+      "edad": "Semana 5",
+      "ninos": { "P3": 5.6, "P25": 6.3, "P50": 7.1, "P75": 7.8, "P97": 8.5 },
+      "ninas": { "P3": 5.5, "P25": 6.2, "P50": 7.0, "P75": 7.7, "P97": 8.3 }
+    },
+    {
+      "edad": "Semana 6",
+      "ninos": { "P3": 6.0, "P25": 6.7, "P50": 7.6, "P75": 8.3, "P97": 9.0 },
+      "ninas": { "P3": 6.0, "P25": 6.7, "P50": 7.6, "P75": 8.3, "P97": 8.9 }
+    },
+    {
+      "edad": "Semana 7",
+      "ninos": { "P3": 6.4, "P25": 7.2, "P50": 8.0, "P75": 8.8, "P97": 9.5 },
+      "ninas": { "P3": 6.4, "P25": 7.1, "P50": 8.1, "P75": 8.9, "P97": 9.4 }
+    },
+    {
+      "edad": "Semana 8",
+      "ninos": { "P3": 6.8, "P25": 7.6, "P50": 8.4, "P75": 9.2, "P97": 9.9 },
+      "ninas": { "P3": 6.8, "P25": 7.5, "P50": 8.5, "P75": 9.2, "P97": 9.8 }
+    },
+    {
+      "edad": "Semana 9",
+      "ninos": { "P3": 7.1, "P25": 8.0, "P50": 8.7, "P75": 9.5, "P97": 10.2 },
+      "ninas": { "P3": 7.1, "P25": 7.9, "P50": 8.9, "P75": 9.6, "P97": 10.2 }
+    },
+    {
+      "edad": "Semana 10",
+      "ninos": { "P3": 7.4, "P25": 8.3, "P50": 9.0, "P75": 9.8, "P97": 10.6 },
+      "ninas": { "P3": 7.4, "P25": 8.2, "P50": 9.2, "P75": 9.9, "P97": 10.6 }
+    },
+    {
+      "edad": "Semana 11",
+      "ninos": { "P3": 7.6, "P25": 8.5, "P50": 9.3, "P75": 10.1, "P97": 10.9 },
+      "ninas": { "P3": 7.6, "P25": 8.4, "P50": 9.4, "P75": 10.2, "P97": 10.9 }
+    },
+    {
+      "edad": "Semana 12",
+      "ninos": { "P3": 7.9, "P25": 8.8, "P50": 9.6, "P75": 10.4, "P97": 11.3 },
+      "ninas": { "P3": 7.9, "P25": 8.7, "P50": 9.7, "P75": 10.5, "P97": 11.3 }
+    },
+    {
+      "edad": "Semana 13",
+      "ninos": { "P3": 8.1, "P25": 9.0, "P50": 9.8, "P75": 10.7, "P97": 11.6 },
+      "ninas": { "P3": 8.1, "P25": 8.9, "P50": 9.9, "P75": 10.7, "P97": 11.6 }
+    },
+    {
+      "edad": "1 mes",
+      "ninos": { "P3": 3.2, "P25": 3.9, "P50": 4.5, "P75": 5.1, "P97": 5.8 },
+      "ninas": { "P3": 3.0, "P25": 3.7, "P50": 4.2, "P75": 4.8, "P97": 5.6 }
+    },
+    {
+      "edad": "2 meses",
+      "ninos": { "P3": 3.9, "P25": 4.7, "P50": 5.6, "P75": 6.4, "P97": 7.2 },
+      "ninas": { "P3": 3.7, "P25": 4.4, "P50": 5.1, "P75": 5.8, "P97": 6.9 }
+    },
+    {
+      "edad": "3 meses",
+      "ninos": { "P3": 4.9, "P25": 5.6, "P50": 6.4, "P75": 7.2, "P97": 8.1 },
+      "ninas": { "P3": 4.6, "P25": 5.4, "P50": 6.0, "P75": 6.7, "P97": 7.9 }
+    },
+    {
+      "edad": "4 meses",
+      "ninos": { "PAquí está el JSON completo con tus datos hasta "Semana 13". A continuación, te mostraré cómo integrarlo en el script:
+
+1. **Crear un archivo `datos.json`**: Guarda el JSON completo en un archivo llamado `datos.json`.
+
+2. **Modificar el script para cargar el JSON**: Usa `pandas` para cargar y acceder a los percentiles desde el archivo JSON.
+
+```python
+import pandas as pd
+import json
+import matplotlib.pyplot as plt
+
+# Cargar datos desde el archivo JSON
+with open('datos.json', 'r') as f:
+    datos = json.load(f)
+
+# Crear DataFrames separados para niños y niñas
+edades = [entry["edad"] for entry in datos["peso_para_edad"]]
+percentiles_ninos = {p: [entry["ninos"][p] for entry in datos["peso_para_edad"]] for p in ["P3", "P25", "P50", "P75", "P97"]}
+percentiles_ninas = {p: [entry["ninas"][p] for entry in datos["peso_para_edad"]] for p in ["P3", "P25", "P50", "P75", "P97"]}
+
+# Convertir en DataFrames
+df_ninos = pd.DataFrame(percentiles_ninos, index=edades)
+df_ninas = pd.DataFrame(percentiles_ninas, index=edades)
+
+# Graficar los percentiles para niños y niñas
+def graficar_percentiles(df, titulo):
+    plt.figure(figsize=(10, 6))
+    for columna in df.columns:
+        plt.plot(df.index, df[columna], label=columna)
+    plt.xlabel("Edad")
+    plt.ylabel("Peso (kg)")
+    plt.title(titulo)
+    plt.legend()
+    plt.xticks(rotation=45)
+    plt.tight_layout()
+    plt.show()
+
+# Graficar percentiles
+graficar_percentiles(df_ninos, "Percentiles de Peso para Edad - Niños")
+graficar_percentiles(df_ninas, "Percentiles de Peso para Edad - Niñas")
