@@ -51,13 +51,22 @@ input[type="date"] {
     margin-left: auto;
     margin-right: auto;
 }
-button {
-    margin-top: 30px;
-    background-color: #4CAF50;
-    color: white;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
+.button-container {
+            display: flex;
+            justify-content: center; /* Centra los botones */
+            margin-top: 20px;
+            width: 100%;
+        }
+        button {
+            margin-top: 30px;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            padding: 10px 20px;
+            border-radius: 8px;
+            border: none;
+        }
 button:hover {
     background-color: #45a049;
 }
