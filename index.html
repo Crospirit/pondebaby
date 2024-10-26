@@ -236,11 +236,11 @@
 </head>
 <body>
 
-    <h1>Pondebaby</h1>
+      <h1>Pondebaby</h1>
     <h2>Calcula la ganancia o pérdida de peso entre dos fechas</h2>
 
-    <div id="alerta" class="custom-alert"></div> <!-- Mensaje de alerta personalizado -->
-    <div id="exito" class="custom-success"></div> <!-- Mensaje de éxito personalizado -->
+    <div id="alerta" class="custom-alert"></div>
+    <div id="exito" class="custom-success"></div>
 
     <label for="pesoInicio">Introduce el peso en la fecha inicial (kg):</label>
     <input type="number" id="pesoInicio" placeholder="Ej. 3.500" step="0.001" min="0" required>
@@ -254,6 +254,10 @@
     <label for="pesoActual">Introduce el peso actual (kg):</label>
     <input type="number" id="pesoActual" placeholder="Ej. 4.200" step="0.001" min="0" required>
 
+    <label for="edadMeses">Edad actual (meses y semanas):</label>
+    <input type="number" id="edadMeses" placeholder="Ej. 2 meses" step="1" min="0" required>
+    <input type="number" id="edadSemanas" placeholder="Ej. 1 semana" step="1" min="0" max="4">
+
     <button onclick="calcular()">Calcular</button>
 
     <div class="result" id="resultados">
@@ -261,11 +265,12 @@
         <p><strong>Porcentaje de ganancia/pérdida de peso:</strong> <span id="resultadoPorcentaje">0.0</span>%</p>
         <p><strong>Ganancia/Pérdida de peso por día:</strong> <span id="resultadoDiario">0</span> gramos/día</p>
         <p><strong>Número de días entre los pesajes:</strong> <span id="resultadoDias">0</span> días</p>
+        <p><strong>Percentil actual:</strong> <span id="resultadoPercentil">-</span></p>
     </div>
 
     <button id="copiarBtn" onclick="copiarResultados()">Copiar Resultados</button>
 
-    <button class="btnToggle" onclick="toggleTablas()">Tablas</button>
+    <button class="btnToggle" onclick="toggleTablas()">Tablas</button> 
 
     <div id="tablasSeccion">
         <!-- Tabla de la AEPED -->
