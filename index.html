@@ -226,8 +226,7 @@ td:nth-child(7), td:nth-child(8), td:nth-child(9), td:nth-child(10), td:nth-chil
     <h1>Pondebaby</h1>
     <h2>Calcula la ganancia o pérdida de peso entre dos fechas</h2>
 
-    <div id="alerta" class="custom-alert"></div> <!-- Mensaje de alerta personalizado -->
-    <div id="exito" class="custom-success"></div> <!-- Mensaje de éxito personalizado -->
+   
 
     <label for="pesoInicio">Introduce el peso en la fecha inicial (kg):</label>
     <input type="number" id="pesoInicio" placeholder="Ej. 3.500" step="0.001" min="0" required>
@@ -250,15 +249,59 @@ td:nth-child(7), td:nth-child(8), td:nth-child(9), td:nth-child(10), td:nth-chil
         <p><strong>Ganancia/Pérdida de peso por día:</strong> <span id="resultadoDiario">0</span> gramos/día</p>
         <p><strong>Número de días entre los pesajes:</strong> <span id="resultadoDias">0</span> días</p>
     </div>
+     <div id="alerta" class="custom-alert"></div> <!-- Mensaje de alerta personalizado -->
+    <div id="exito" class="custom-success"></div> <!-- Mensaje de éxito personalizado -->
 <div class="button-container"><button id="copiarBtn" onclick="copiarResultados()">Copiar Resultados</button></div>
     
 
     <button class="btnToggle" onclick="toggleTablas()">Tablas</button>
+      <div id="tablasSeccion">
+          <table>
+    <tr>
+        <th></th>
+        <th>Lactancia Materna</th>
+        <th>Fórmula Infantil</th>
+    </tr>
+    <tr>
+        <td>Pérdida inicial de peso</td>
+        <td>Hasta el 10%</td>
+        <td>Similar</td>
+    </tr>
+    <tr>
+        <td>Ganancia diaria de peso</td>
+        <td>20-30 g</td>
+        <td>25-35 g</td>
+    </tr>
+    <tr>
+        <td>Ganancia total en el primer mes</td>
+        <td>600-900 g</td>
+        <td>700-1000 g</td>
+    </tr>
+    <tr>
+        <td>Frecuencia de tomas</td>
+        <td>Cada 2-3 horas</td>
+        <td>Cada 3-4 horas</td>
+    </tr>
+    <tr>
+        <td>Beneficios</td>
+        <td>Inmunológico, nutricional, prevención de enfermedades</td>
+        <td>Alternativa adecuada, riesgo de obesidad</td>
+    </tr>
+</table>
+
+<h3>Bibliografía:</h3>
+<ul>
+    <li><a href="https://www.who.int/tools/child-growth-standards/standards/weight-for-age" target="_blank">Organización Mundial de la Salud (OMS): Infant and young child feeding</a></li>
+    <li><a href="https://publications.aap.org/pediatrics/article/129/3/e827/31447/Breastfeeding-and-the-Use-of-Human-Milk" target="_blank">Academia Americana de Pediatría (AAP): Breastfeeding and the Use of Human Milk</a></li>
+    <li><a href="https://www.cdc.gov/growthcharts/index.htm" target="_blank">Centros para el Control y la Prevención de Enfermedades (CDC): Growth Charts</a></li>
+    <li>Kliegman, R., Stanton, B., St Geme, J., Schor, N., & Behrman, R. (2015). Nelson Textbook of Pediatrics. 20th ed. Elsevier.</li>
+</ul>
+</div>
 
     <div id="tablasSeccion">
         <!-- Tabla de la AEPED -->
         <div class="info">
-            <p><strong>Una ganancia de peso inferior a lo esperado para la edad:</strong></p>
+            <p><strong>Ganancia de peso esperado para la edad:</strong></p>
             <p>26-31 g/día entre 0 y 3 meses</p>
             <p>17-18 g/día entre 3 y 6 meses</p>
             <p>12-13 g/día entre 6 y 9 meses</p>
