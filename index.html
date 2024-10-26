@@ -236,11 +236,11 @@
 </head>
 <body>
 
-      <h1>Pondebaby</h1>
+    <h1>Pondebaby</h1>
     <h2>Calcula la ganancia o pérdida de peso entre dos fechas</h2>
 
-    <div id="alerta" class="custom-alert"></div>
-    <div id="exito" class="custom-success"></div>
+    <div id="alerta" class="custom-alert"></div> <!-- Mensaje de alerta personalizado -->
+    <div id="exito" class="custom-success"></div> <!-- Mensaje de éxito personalizado -->
 
     <label for="pesoInicio">Introduce el peso en la fecha inicial (kg):</label>
     <input type="number" id="pesoInicio" placeholder="Ej. 3.500" step="0.001" min="0" required>
@@ -254,10 +254,6 @@
     <label for="pesoActual">Introduce el peso actual (kg):</label>
     <input type="number" id="pesoActual" placeholder="Ej. 4.200" step="0.001" min="0" required>
 
-    <label for="edadMeses">Edad actual (meses y semanas):</label>
-    <input type="number" id="edadMeses" placeholder="Ej. 2 meses" step="1" min="0" required>
-    <input type="number" id="edadSemanas" placeholder="Ej. 1 semana" step="1" min="0" max="4">
-
     <button onclick="calcular()">Calcular</button>
 
     <div class="result" id="resultados">
@@ -265,12 +261,11 @@
         <p><strong>Porcentaje de ganancia/pérdida de peso:</strong> <span id="resultadoPorcentaje">0.0</span>%</p>
         <p><strong>Ganancia/Pérdida de peso por día:</strong> <span id="resultadoDiario">0</span> gramos/día</p>
         <p><strong>Número de días entre los pesajes:</strong> <span id="resultadoDias">0</span> días</p>
-        <p><strong>Percentil actual:</strong> <span id="resultadoPercentil">-</span></p>
     </div>
 
     <button id="copiarBtn" onclick="copiarResultados()">Copiar Resultados</button>
 
-    <button class="btnToggle" onclick="toggleTablas()">Tablas</button> 
+    <button class="btnToggle" onclick="toggleTablas()">Tablas</button>
 
     <div id="tablasSeccion">
         <!-- Tabla de la AEPED -->
@@ -674,86 +669,67 @@
         </div>
     </div>
 
-   <script>
-    let percentiles = {};
+    <script>
+        function calcular() {
+            let pesoInicio = parseFloat(document.getElementById("pesoInicio").value);
+            let fechaInicio = new Date(document.getElementById("fechaInicio").value);
+            let pesoActual = parseFloat(document.getElementById("pesoActual").value);
+            let fechaActual = new Date(document.getElementById("fechaActual").value);
 
-    // Cargar datos JSON
-    fetch('datos.json')
-        .then(response => response.json())
-        .then(data => {
-            percentiles = data.percentiles;
-        })
-        .catch(error => console.error('Error al cargar percentiles:', error));
+            if (isNaN(pesoInicio) || isNaN(pesoActual) || !fechaInicio || !fechaActual) {
+                mostrarAlerta("Por favor, introduce todos los valores de peso y fechas.");
+                return;
+            }
 
-    function calcular() {
-        let pesoInicio = parseFloat(document.getElementById("pesoInicio").value);
-        let fechaInicio = new Date(document.getElementById("fechaInicio").value);
-        let pesoActual = parseFloat(document.getElementById("pesoActual").value);
-        let fechaActual = new Date(document.getElementById("fechaActual").value);
-        let edadMeses = parseInt(document.getElementById("edadMeses").value);
-        let edadSemanas = parseInt(document.getElementById("edadSemanas").value);
+            let diasTranscurridos = (fechaActual - fechaInicio) / (1000 * 60 * 60 * 24); // Milisegundos a días
+            let gananciaPeso = Math.round((pesoActual - pesoInicio) * 1000); // kg a gramos, redondeado
+            let gananciaDiaria = Math.round(gananciaPeso / diasTranscurridos); // redondeo a enteros
 
-        if (isNaN(pesoInicio) || isNaN(pesoActual) || !fechaInicio || !fechaActual) {
-            mostrarAlerta("Por favor, introduce todos los valores de peso y fechas.");
-            return;
+            document.getElementById("resultadoGramos").textContent = gananciaPeso;
+            document.getElementById("resultadoPorcentaje").textContent = ((gananciaPeso / (pesoInicio * 1000)) * 100).toFixed(2);
+            document.getElementById("resultadoDiario").textContent = gananciaDiaria;
+            document.getElementById("resultadoDias").textContent = Math.floor(diasTranscurridos);
+
+            document.getElementById("resultados").style.display = "block";
+            mostrarExito("Cálculo completado con éxito.");
         }
 
-        let diasTranscurridos = (fechaActual - fechaInicio) / (1000 * 60 * 60 * 24);
-        let gananciaPeso = Math.round((pesoActual - pesoInicio) * 1000);
-        let gananciaDiaria = Math.round(gananciaPeso / diasTranscurridos);
+        function copiarResultados() {
+            let resultados = `Ganancia/Pérdida de peso: ${document.getElementById("resultadoGramos").textContent} gramos\n`;
+            resultados += `Porcentaje de ganancia/pérdida de peso: ${document.getElementById("resultadoPorcentaje").textContent}%\n`;
+            resultados += `Ganancia/Pérdida de peso por día: ${document.getElementById("resultadoDiario").textContent} gramos/día\n`;
+            resultados += `Número de días entre los pesajes: ${document.getElementById("resultadoDias").textContent} días\n`;
 
-        document.getElementById("resultadoGramos").textContent = gananciaPeso;
-        document.getElementById("resultadoPorcentaje").textContent = ((gananciaPeso / (pesoInicio * 1000)) * 100).toFixed(2);
-        document.getElementById("resultadoDiario").textContent = gananciaDiaria;
-        document.getElementById("resultadoDias").textContent = Math.floor(diasTranscurridos);
-
-        const edadTotalSemanas = edadMeses * 4 + edadSemanas;
-        
-        // Obtener percentil según el peso actual y edad
-        let percentilActual = percentiles[edadTotalSemanas]?.find(p => p.peso >= pesoActual)?.percentil || "N/A";
-        document.getElementById("resultadoPercentil").textContent = percentilActual;
-
-        document.getElementById("resultados").style.display = "block";
-        mostrarExito("Cálculo completado con éxito.");
-    }
-
-    function copiarResultados() {
-        let resultados = `Ganancia/Pérdida de peso: ${document.getElementById("resultadoGramos").textContent} gramos\n`;
-        resultados += `Porcentaje de ganancia/pérdida de peso: ${document.getElementById("resultadoPorcentaje").textContent}%\n`;
-        resultados += `Ganancia/Pérdida de peso por día: ${document.getElementById("resultadoDiario").textContent} gramos/día\n`;
-        resultados += `Número de días entre los pesajes: ${document.getElementById("resultadoDias").textContent} días\n`;
-        resultados += `Percentil actual: ${document.getElementById("resultadoPercentil").textContent}`;
-
-        navigator.clipboard.writeText(resultados).then(() => {
-            mostrarExito("Resultados copiados al portapapeles.");
-        }).catch(err => {
-            mostrarAlerta("Hubo un error al copiar los resultados: " + err);
-        });
-    }
-
-    function toggleTablas() {
-        let tablasSeccion = document.getElementById("tablasSeccion");
-        if (tablasSeccion.style.display === "none" || tablasSeccion.style.display === "") {
-            tablasSeccion.style.display = "block";
-        } else {
-            tablasSeccion.style.display = "none";
+            navigator.clipboard.writeText(resultados).then(() => {
+                mostrarExito("Resultados copiados al portapapeles.");
+            }).catch(err => {
+                mostrarAlerta("Hubo un error al copiar los resultados: " + err);
+            });
         }
-    }
 
-    function mostrarAlerta(mensaje) {
-        let alerta = document.getElementById("alerta");
-        alerta.textContent = mensaje;
-        alerta.style.display = "block";
-        setTimeout(() => alerta.style.display = "none", 3000);
-    }
+        function toggleTablas() {
+            let tablasSeccion = document.getElementById("tablasSeccion");
+            if (tablasSeccion.style.display === "none" || tablasSeccion.style.display === "") {
+                tablasSeccion.style.display = "block";
+            } else {
+                tablasSeccion.style.display = "none";
+            }
+        }
 
-    function mostrarExito(mensaje) {
-        let exito = document.getElementById("exito");
-        exito.textContent = mensaje;
-        exito.style.display = "block";
-        setTimeout(() => exito.style.display = "none", 3000);
-    }
-</script>
+        function mostrarAlerta(mensaje) {
+            let alerta = document.getElementById("alerta");
+            alerta.textContent = mensaje;
+            alerta.style.display = "block";
+            setTimeout(() => alerta.style.display = "none", 3000);
+        }
+
+        function mostrarExito(mensaje) {
+            let exito = document.getElementById("exito");
+            exito.textContent = mensaje;
+            exito.style.display = "block";
+            setTimeout(() => exito.style.display = "none", 3000);
+        }
+    </script>
 
 </body>
 </html>
