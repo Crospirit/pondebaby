@@ -674,67 +674,86 @@
         </div>
     </div>
 
-    <script>
-        function calcular() {
-            let pesoInicio = parseFloat(document.getElementById("pesoInicio").value);
-            let fechaInicio = new Date(document.getElementById("fechaInicio").value);
-            let pesoActual = parseFloat(document.getElementById("pesoActual").value);
-            let fechaActual = new Date(document.getElementById("fechaActual").value);
+   <script>
+    let percentiles = {};
 
-            if (isNaN(pesoInicio) || isNaN(pesoActual) || !fechaInicio || !fechaActual) {
-                mostrarAlerta("Por favor, introduce todos los valores de peso y fechas.");
-                return;
-            }
+    // Cargar datos JSON
+    fetch('datos.json')
+        .then(response => response.json())
+        .then(data => {
+            percentiles = data.percentiles;
+        })
+        .catch(error => console.error('Error al cargar percentiles:', error));
 
-            let diasTranscurridos = (fechaActual - fechaInicio) / (1000 * 60 * 60 * 24); // Milisegundos a días
-            let gananciaPeso = Math.round((pesoActual - pesoInicio) * 1000); // kg a gramos, redondeado
-            let gananciaDiaria = Math.round(gananciaPeso / diasTranscurridos); // redondeo a enteros
+    function calcular() {
+        let pesoInicio = parseFloat(document.getElementById("pesoInicio").value);
+        let fechaInicio = new Date(document.getElementById("fechaInicio").value);
+        let pesoActual = parseFloat(document.getElementById("pesoActual").value);
+        let fechaActual = new Date(document.getElementById("fechaActual").value);
+        let edadMeses = parseInt(document.getElementById("edadMeses").value);
+        let edadSemanas = parseInt(document.getElementById("edadSemanas").value);
 
-            document.getElementById("resultadoGramos").textContent = gananciaPeso;
-            document.getElementById("resultadoPorcentaje").textContent = ((gananciaPeso / (pesoInicio * 1000)) * 100).toFixed(2);
-            document.getElementById("resultadoDiario").textContent = gananciaDiaria;
-            document.getElementById("resultadoDias").textContent = Math.floor(diasTranscurridos);
-
-            document.getElementById("resultados").style.display = "block";
-            mostrarExito("Cálculo completado con éxito.");
+        if (isNaN(pesoInicio) || isNaN(pesoActual) || !fechaInicio || !fechaActual) {
+            mostrarAlerta("Por favor, introduce todos los valores de peso y fechas.");
+            return;
         }
 
-        function copiarResultados() {
-            let resultados = `Ganancia/Pérdida de peso: ${document.getElementById("resultadoGramos").textContent} gramos\n`;
-            resultados += `Porcentaje de ganancia/pérdida de peso: ${document.getElementById("resultadoPorcentaje").textContent}%\n`;
-            resultados += `Ganancia/Pérdida de peso por día: ${document.getElementById("resultadoDiario").textContent} gramos/día\n`;
-            resultados += `Número de días entre los pesajes: ${document.getElementById("resultadoDias").textContent} días\n`;
+        let diasTranscurridos = (fechaActual - fechaInicio) / (1000 * 60 * 60 * 24);
+        let gananciaPeso = Math.round((pesoActual - pesoInicio) * 1000);
+        let gananciaDiaria = Math.round(gananciaPeso / diasTranscurridos);
 
-            navigator.clipboard.writeText(resultados).then(() => {
-                mostrarExito("Resultados copiados al portapapeles.");
-            }).catch(err => {
-                mostrarAlerta("Hubo un error al copiar los resultados: " + err);
-            });
-        }
+        document.getElementById("resultadoGramos").textContent = gananciaPeso;
+        document.getElementById("resultadoPorcentaje").textContent = ((gananciaPeso / (pesoInicio * 1000)) * 100).toFixed(2);
+        document.getElementById("resultadoDiario").textContent = gananciaDiaria;
+        document.getElementById("resultadoDias").textContent = Math.floor(diasTranscurridos);
 
-        function toggleTablas() {
-            let tablasSeccion = document.getElementById("tablasSeccion");
-            if (tablasSeccion.style.display === "none" || tablasSeccion.style.display === "") {
-                tablasSeccion.style.display = "block";
-            } else {
-                tablasSeccion.style.display = "none";
-            }
-        }
+        const edadTotalSemanas = edadMeses * 4 + edadSemanas;
+        
+        // Obtener percentil según el peso actual y edad
+        let percentilActual = percentiles[edadTotalSemanas]?.find(p => p.peso >= pesoActual)?.percentil || "N/A";
+        document.getElementById("resultadoPercentil").textContent = percentilActual;
 
-        function mostrarAlerta(mensaje) {
-            let alerta = document.getElementById("alerta");
-            alerta.textContent = mensaje;
-            alerta.style.display = "block";
-            setTimeout(() => alerta.style.display = "none", 3000);
-        }
+        document.getElementById("resultados").style.display = "block";
+        mostrarExito("Cálculo completado con éxito.");
+    }
 
-        function mostrarExito(mensaje) {
-            let exito = document.getElementById("exito");
-            exito.textContent = mensaje;
-            exito.style.display = "block";
-            setTimeout(() => exito.style.display = "none", 3000);
+    function copiarResultados() {
+        let resultados = `Ganancia/Pérdida de peso: ${document.getElementById("resultadoGramos").textContent} gramos\n`;
+        resultados += `Porcentaje de ganancia/pérdida de peso: ${document.getElementById("resultadoPorcentaje").textContent}%\n`;
+        resultados += `Ganancia/Pérdida de peso por día: ${document.getElementById("resultadoDiario").textContent} gramos/día\n`;
+        resultados += `Número de días entre los pesajes: ${document.getElementById("resultadoDias").textContent} días\n`;
+        resultados += `Percentil actual: ${document.getElementById("resultadoPercentil").textContent}`;
+
+        navigator.clipboard.writeText(resultados).then(() => {
+            mostrarExito("Resultados copiados al portapapeles.");
+        }).catch(err => {
+            mostrarAlerta("Hubo un error al copiar los resultados: " + err);
+        });
+    }
+
+    function toggleTablas() {
+        let tablasSeccion = document.getElementById("tablasSeccion");
+        if (tablasSeccion.style.display === "none" || tablasSeccion.style.display === "") {
+            tablasSeccion.style.display = "block";
+        } else {
+            tablasSeccion.style.display = "none";
         }
-    </script>
+    }
+
+    function mostrarAlerta(mensaje) {
+        let alerta = document.getElementById("alerta");
+        alerta.textContent = mensaje;
+        alerta.style.display = "block";
+        setTimeout(() => alerta.style.display = "none", 3000);
+    }
+
+    function mostrarExito(mensaje) {
+        let exito = document.getElementById("exito");
+        exito.textContent = mensaje;
+        exito.style.display = "block";
+        setTimeout(() => exito.style.display = "none", 3000);
+    }
+</script>
 
 </body>
 </html>
