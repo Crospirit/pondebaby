@@ -7,156 +7,203 @@
    </title>
     <style>
         body {
-            font-family: 'Comic Sans MS', cursive, sans-serif;
-            background-color: #f0f8ff;
-            color: #333;
-            max-width: 600px;
-            margin: 20px auto;
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-        }
-        h1, h2 {
-            text-align: center;
-            color: #4CAF50;
-        }
-        label, input[type="number"], button, input[type="date"], .result p, .info p {
-            display: block;
-            margin-top: 10px;
-            color: #333;
-            width: 100%;
-            padding: 8px;
-            border-radius: 8px;
-        }
-        button {
-            background-color: #4CAF50;
-            color: white;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        button:hover {
-            background-color: #45a049;
-        }
-        .result {
-            background-color: #e0f7fa;
-            padding: 15px;
-            border-radius: 10px;
-            border: 1px solid #4CAF50;
-            display: none;
-        }
-        #copiarBtn {
-            background-color: #008CBA;
-        }
-        #copiarBtn:hover {
-            background-color: #007bb5;
-        }
-        .info {
-            background-color: #fff3cd;
-            padding: 10px;
-            border-radius: 8px;
-            border: 1px solid #ffeeba;
-            margin-top: 20px;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-            text-align: center;
-        }
-        table, th, td {
-            border: 1px solid #4CAF50;
-            padding: 8px;
-        }
-        th {
-            background-color: #4CAF50;
-            color: white;
-        }
-        td:nth-child(2), td:nth-child(3), td:nth-child(4), td:nth-child(5), td:nth-child(6) {
-            background-color: #e3f2fd; /* Color para niños */
-        }
-        td:nth-child(7), td:nth-child(8), td:nth-child(9), td:nth-child(10), td:nth-child(11) {
-            background-color: #fce4ec; /* Color para niñas */
-        }
-        #tablasSeccion {
-            display: block;
-            margin-top: 20px;
-        }
-        .btnToggle {
-            background-color: #f0ad4e;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 8px;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-            display: block;
-            margin: 20px auto;
-        }
-        .btnToggle:hover {
-            background-color: #ec971f;
-        }
-        .custom-alert, .custom-success {
-            margin-top: 10px;
-            padding: 10px;
-            border-radius: 8px;
-            text-align: center;
-            display: none;
-        }
-        .custom-alert {
-            background-color: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
-        }
-        .custom-success {
-            background-color: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
-        }
-        @media (max-width: 768px) {
-            body {
-                padding: 10px;
-                margin: 10px;
-                max-width: 100%;
-            }
-            h1, h2 {
-                font-size: 1.8rem;
-            }
-            input[type="number"], input[type="date"], button {
-                width: 90%;
-                font-size: 1rem;
-                padding: 10px;
-            }
-            table, th, td {
-                font-size: 14px;
-                padding: 6px;
-            }
-            .btnToggle {
-                width: 90%;
-            }
-        }
-        @media (max-width: 480px) {
-            h1 {
-                font-size: 1.6rem;
-            }
-            h2 {
-                font-size: 1rem;
-            }
-            input[type="number"], input[type="date"], button {
-                width: 100%;
-                font-size: 0.9rem;
-                padding: 8px;
-            }
-            table, th, td {
-                font-size: 12px;
-                padding: 4px;
-            }
-            .btnToggle {
-                width: 100%;
-                font-size: 14px;
-            }
-        }
-    
-    </style>
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    background-color: #f0f8ff;
+    color: #333;
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+h1 {
+    text-align: center;
+    color: #4CAF50;
+}
+h2 {
+    text-align: center;
+    color: #008CBA;
+    font-size: 1.2rem;
+    margin-top: -10px;
+    margin-bottom: 20px;
+}
+label {
+    display: block;
+    margin-top: 10px;
+    color: #333;
+}
+input[type="number"], button {
+    width: 50%; /* Reducido para 4-5 dígitos */
+    padding: 8px;
+    margin-top: 5px;
+    border-radius: 8px;
+    border: 2px solid #4CAF50;
+    font-size: 14px;
+}
+input[type="date"] {
+    width: 70%;
+    padding: 8px;
+    margin-top: 5px;
+    border-radius: 8px;
+    border: 2px solid #4CAF50;
+    font-size: 14px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+button {
+    margin-top: 20px;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+button:hover {
+    background-color: #45a049;
+}
+.result {
+    margin-top: 20px;
+    background-color: #e0f7fa;
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #4CAF50;
+    display: none; /* Ocultamos los resultados inicialmente */
+}
+.result p {
+    font-size: 18px;
+    color: #333;
+}
+#copiarBtn {
+    background-color: #008CBA;
+}
+#copiarBtn:hover {
+    background-color: #007bb5;
+}
+.info {
+    margin-top: 20px;
+    background-color: #fff3cd;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ffeeba;
+}
+.info p {
+    font-size: 14px;
+    color: #856404;
+}
+.info a {
+    color: #007bff;
+    text-decoration: none;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+table, th, td {
+    border: 1px solid #4CAF50;
+    padding: 8px;
+    text-align: center;
+}
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+td:nth-child(2), td:nth-child(3), td:nth-child(4), td:nth-child(5), td:nth-child(6) {
+    background-color: #e3f2fd; /* Color para niños */
+}
+td:nth-child(7), td:nth-child(8), td:nth-child(9), td:nth-child(10), td:nth-child(11) {
+    background-color: #fce4ec; /* Color para niñas */
+}
+#tablasSeccion {
+    display: none;
+    margin-top: 20px;
+}
+.btnToggle {
+    background-color: #f0ad4e;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    display: block;
+    margin: 20px auto;
+}
+.btnToggle:hover {
+    background-color: #ec971f;
+}
+.custom-alert {
+    margin-top: 10px;
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 10px;
+    border: 1px solid #f5c6cb;
+    border-radius: 8px;
+    text-align: center;
+    display: none;
+}
+.custom-success {
+    margin-top: 10px;
+    background-color: #d4edda;
+    color: #155724;
+    padding: 10px;
+    border: 1px solid #c3e6cb;
+    border-radius: 8px;
+    text-align: center;
+    display: none;
+}
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+        margin: 10px;
+        max-width: 100%; /* Se adapta a pantallas pequeñas */
+    }
+    h1 {
+        font-size: 1.8rem;
+    }
+    h2 {
+        font-size: 1.1rem;
+    }
+    input[type="number"], input[type="date"], button {
+        width: 90%; /* Hacemos los inputs y botones más grandes para móviles */
+        font-size: 1rem;
+        padding: 10px;
+    }
+    button {
+        max-width: 100%;
+    }
+    table, th, td {
+        font-size: 14px; /* Reducimos el tamaño de texto en tablas */
+        padding: 6px; /* Reducimos el padding */
+    }
+    .btnToggle {
+        width: 90%; /* Botón de tablas adaptado */
+    }
+}
+/* Media queries para pantallas muy pequeñas (como iPhone SE) */
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.6rem;
+    }
+    h2 {
+        font-size: 1rem;
+    }
+    input[type="number"], input[type="date"], button {
+        width: 100%; /* Se asegura que ocupe todo el ancho en móviles pequeños */
+        font-size: 0.9rem;
+        padding: 8px;
+    }
+    table, th, td {
+        font-size: 12px; /* Texto aún más pequeño para pantallas muy pequeñas */
+        padding: 4px;
+    }
+    .btnToggle {
+        width: 100%;
+        font-size: 14px; /* Botón un poco más pequeño en pantallas pequeñas */
+    }
+}
+        </style>
+
 </head>
 <body>
 
