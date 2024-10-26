@@ -158,6 +158,16 @@ td:nth-child(7), td:nth-child(8), td:nth-child(9), td:nth-child(10), td:nth-chil
     text-align: center;
     display: none;
 }
+        .important {
+    background-color: #ffcccb; /* Color de fondo rojo claro para destacar */
+    color: #333; /* Color del texto */
+    padding: 15px; /* Espaciado interno */
+    border-left: 6px solid #f00; /* Borde izquierdo rojo */
+    margin-bottom: 20px; /* Espaciado inferior */
+    border-radius: 5px; /* Bordes redondeados */
+    font-weight: bold; /* Texto en negrita */
+}
+
 .custom-success {
     margin-top: 10px;
     background-color: #d4edda;
@@ -231,7 +241,7 @@ td:nth-child(7), td:nth-child(8), td:nth-child(9), td:nth-child(10), td:nth-chil
     <label for="pesoInicio">Introduce el peso en la fecha inicial (kg):</label>
     <input type="number" id="pesoInicio" placeholder="Ej. 3.500" step="0.001" min="0" required>
 
-    <label for="fechaInicio">Introduce la fecha inicial:</label>
+    <label for="fechaInicio">Introduce la fecha del pesaje inicial:</label>
     <input type="date" id="fechaInicio" required>
 
     <label for="fechaActual">Introduce la fecha del pesaje actual:</label>
@@ -248,9 +258,15 @@ td:nth-child(7), td:nth-child(8), td:nth-child(9), td:nth-child(10), td:nth-chil
         <p><strong>Porcentaje de ganancia/pérdida de peso:</strong> <span id="resultadoPorcentaje">0.0</span>%</p>
         <p><strong>Ganancia/Pérdida de peso por día:</strong> <span id="resultadoDiario">0</span> gramos/día</p>
         <p><strong>Número de días entre los pesajes:</strong> <span id="resultadoDias">0</span> días</p>
+        <div class="important">
+    
     </div>
      <div id="alerta" class="custom-alert"></div> <!-- Mensaje de alerta personalizado -->
     <div id="exito" class="custom-success"></div> <!-- Mensaje de éxito personalizado -->
+        <div class="important">
+    <p><strong>Advertencia:</strong> Los datos presentados en esta página deben ser interpretados por profesionales de la salud. El uso de esta información es bajo su propia responsabilidad. El propietario de esta página no se hace responsable por cualquier uso indebido de la información aquí proporcionada.</p>
+</div>
+
 <div class="button-container"><button id="copiarBtn" onclick="copiarResultados()">Copiar Resultados</button></div>
     
 
@@ -295,9 +311,9 @@ td:nth-child(7), td:nth-child(8), td:nth-child(9), td:nth-child(10), td:nth-chil
     </tr>
 </table>
  <div class="info">
-<h4>Ganancia Diaria de Peso Esperada para la Edad</h4>
+<h3>Ganancia Diaria de Peso Esperada para la Edad</h3>
 
-            <p><strong>Ganancia de peso esperado para la edad:</strong></p>
+           
             <p>26-31 g/día entre 0 y 3 meses</p>
             <p>17-18 g/día entre 3 y 6 meses</p>
             <p>12-13 g/día entre 6 y 9 meses</p>
@@ -306,21 +322,23 @@ td:nth-child(7), td:nth-child(8), td:nth-child(9), td:nth-child(10), td:nth-chil
             <p>Fuente: <a href="https://www.aeped.es/sites/default/files/documentos/40_fallo_medro.pdf" target="_blank">Asociación Española de Pediatría</a></p>
         
 
-<h4>Recomendaciones de la OMS</h4>
+<h3>Recomendaciones de la OMS</h3>
 <ul>
-    <li>Lactancia materna exclusiva durante los primeros seis meses.</li>
-    <li>Introducción de alimentos complementarios adecuados a partir de los seis meses, continuando con la lactancia materna hasta los 2 años o más.</li>
+    <p>Lactancia materna exclusiva durante los primeros seis meses.</p>
+    <p>Introducción de alimentos complementarios adecuados a partir de los seis meses, continuando con la lactancia materna hasta los 2 años o más.</p>
 </ul>
- </div>
 
-<h3>Bibliografía:</h3>
+
+<h3>Fuentes:</h3>
 <ul>
     <li><a href="https://www.who.int/tools/child-growth-standards/standards/weight-for-age" target="_blank">Organización Mundial de la Salud (OMS): Infant and young child feeding</a></li>
     <li><a href="https://publications.aap.org/pediatrics/article/129/3/e827/31447/Breastfeeding-and-the-Use-of-Human-Milk" target="_blank">Academia Americana de Pediatría (AAP): Breastfeeding and the Use of Human Milk</a></li>
     <li><a href="https://www.cdc.gov/growthcharts/index.htm" target="_blank">Centros para el Control y la Prevención de Enfermedades (CDC): Growth Charts</a></li>
-    <li><a href="https://www.aeped.es/sites/default/files/documentos/40_fallo_medro.pdf" target="_blank">Asociación Española de Pediatría: Ganancia de peso</a></li>
-    <li>Kliegman, R., Stanton, B., St Geme, J., Schor, N., & Behrman, R. (2015). Nelson Textbook of Pediatrics. 20th ed. Elsevier.</li>
+    <li><a href="https://www.aeped.es/sites/default/files/documentos/40_fallo_medro.pdf" target="_blank">Asociación Española de Pediatría: Fallo de medro</a></li>
+    <li>Kliegman, R., Stanton, B., St Geme, J., Schor, N., & Behrman, R. (2015). <i>Nelson Textbook of Pediatrics</i>. 20th ed. Elsevier.</li>
 </ul>
+ </div>
+
 
 
 
