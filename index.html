@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <link href="https://fonts.googleapis.com/css2?family=Avenir+Next:wght@400;700&display=swap" rel="stylesheet">
+   
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Pondebaby - Calculadora de Peso</title>
@@ -187,56 +187,55 @@ td:nth-child(7), td:nth-child(8), td:nth-child(9), td:nth-child(10), td:nth-chil
         
 
 
-@media (max-width: 768px) {
-    body {
-        padding: 10px;
-        margin: 10px;
-        max-width: 100%; /* Se adapta a pantallas pequeñas */
-    }
-    h1 {
-        font-size: 1.8rem;
-    }
-    h2 {
-        font-size: 1.1rem;
-    }
-    input[type="number"], input[type="date"], button {
-        width: 90%; /* Hacemos los inputs y botones más grandes para móviles */
-        font-size: 1rem;
-        padding: 10px;
-    }
-    button {
-        max-width: 100%;
-    }
-    table, th, td {
-        font-size: 14px; /* Reducimos el tamaño de texto en tablas */
-        padding: 6px; /* Reducimos el padding */
-    }
-    .btnToggle {
-        width: 90%; /* Botón de tablas adaptado */
-    }
-}
-/* Media queries para pantallas muy pequeñas (como iPhone SE) */
-@media (max-width: 480px) {
-    h1 {
-        font-size: 1.6rem;
-    }
-    h2 {
-        font-size: 1rem;
-    }
-    input[type="number"], input[type="date"], button {
-        width: 100%; /* Se asegura que ocupe todo el ancho en móviles pequeños */
-        font-size: 0.9rem;
-        padding: 8px;
-    }
-    table, th, td {
-        font-size: 12px; /* Texto aún más pequeño para pantallas muy pequeñas */
-        padding: 4px;
-    }
-    .btnToggle {
-        width: 100%;
-        font-size: 14px; /* Botón un poco más pequeño en pantallas pequeñas */
-    }
-}
+/* Media Queries para pantallas medianas y pequeñas */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+                margin: 10px;
+                max-width: 100%;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+            h2 {
+                font-size: 1.1rem;
+            }
+            input[type="number"], input[type="date"], button {
+                width: 90%;
+                font-size: 1rem;
+                padding: 10px;
+            }
+            table, th, td {
+                font-size: 14px;
+                padding: 6px;
+            }
+            .btnToggle {
+                width: 90%;
+            }
+        }
+        
+        /* Media Queries para pantallas muy pequeñas (como iPhone SE) */
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.6rem;
+            }
+            h2 {
+                font-size: 1rem;
+            }
+            input[type="number"], input[type="date"], button {
+                width: 100%;
+                font-size: 0.9rem;
+                padding: 8px;
+            }
+            table, th, td {
+                font-size: 12px;
+                padding: 4px;
+            }
+            .btnToggle {
+                width: 100%;
+                font-size: 14px;
+            }
+        }
         </style>
 
 </head>
