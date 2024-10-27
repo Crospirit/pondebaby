@@ -790,13 +790,18 @@ td:nth-child(7), td:nth-child(8), td:nth-child(9), td:nth-child(10), td:nth-chil
         }
 
         function toggleTablas() {
-            let tablasSeccion = document.getElementById("tablasSeccion");
-            if (tablasSeccion.style.display === "none" || tablasSeccion.style.display === "") {
-                tablasSeccion.style.display = "block";
-            } else {
-                tablasSeccion.style.display = "none";
-            }
-        }
+    let tablasSeccion = document.getElementById("tablasSeccion");
+
+    if (tablasSeccion.style.display === "none" || tablasSeccion.style.display === "") {
+        tablasSeccion.style.display = "block";
+        
+        // Desplazarse a la sección de tablas
+        tablasSeccion.scrollIntoView({ behavior: 'smooth' });
+    } else {
+        tablasSeccion.style.display = "none";
+    }
+}
+
 
         function mostrarAlerta(mensaje) {
             let alerta = document.getElementById("alerta");
