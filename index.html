@@ -746,6 +746,10 @@ td:nth-child(7), td:nth-child(8), td:nth-child(9), td:nth-child(10), td:nth-chil
                 mostrarAlerta("Por favor, introduce todos los valores de peso y fechas.");
                 return;
             }
+           if (fechaActual < fechaInicio) {
+        mostrarAlerta("La fecha del pesaje actual no puede ser anterior a la fecha inicial.");
+        return;
+    }
 
             let diasTranscurridos = (fechaActual - fechaInicio) / (1000 * 60 * 60 * 24); // Milisegundos a días
             let gananciaPeso = Math.round((pesoActual - pesoInicio) * 1000); // kg a gramos, redondeado
