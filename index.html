@@ -229,6 +229,18 @@ td:nth-child(7), td:nth-child(8), td:nth-child(9), td:nth-child(10), td:nth-chil
         font-size: 0.9rem;
         padding: 8px;
     }
+           function toggleTablas() {
+    let tablasSeccion = document.getElementById("tablasSeccion");
+    
+    if (tablasSeccion.style.display === "none" || tablasSeccion.style.display === "") {
+        tablasSeccion.style.display = "block";
+        
+        // Desplazarse a la sección de tablas
+        tablasSeccion.scrollIntoView({ behavior: 'smooth' });
+    } else {
+        tablasSeccion.style.display = "none";
+    }
+}
     .btnToggle {
         width: 100%; /* Ancho completo para el botón de tablas */
     }
