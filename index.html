@@ -200,18 +200,20 @@ td:nth-child(7), td:nth-child(8), td:nth-child(9), td:nth-child(10), td:nth-chil
             h2 {
                 font-size: 1.1rem;
             }
-            input[type="number"], input[type="date"], button {
-                width: 90%;
-                font-size: 1rem;
-                padding: 10px;
-            }
+            
             table, th, td {
                 font-size: 14px;
                 padding: 6px;
             }
-            .btnToggle {
-                width: 90%;
-            }
+           
+           input[type="number"], input[type="date"], button {
+        width: 100%; /* Ancho completo para dispositivos móviles */
+        font-size: 1rem;
+        padding: 10px;
+    }
+    .btnToggle {
+        width: 100%; /* Botón de tablas adaptado al ancho completo */
+    }
         }
         
         /* Media Queries para pantallas muy pequeñas (como iPhone SE) */
@@ -222,11 +224,14 @@ td:nth-child(7), td:nth-child(8), td:nth-child(9), td:nth-child(10), td:nth-chil
             h2 {
                 font-size: 1rem;
             }
-            input[type="number"], input[type="date"], button {
-                width: 100%;
-                font-size: 0.9rem;
-                padding: 8px;
-            }
+           input[type="number"], input[type="date"], button {
+        width: 100%; /* Ancho completo para pantallas muy pequeñas */
+        font-size: 0.9rem;
+        padding: 8px;
+    }
+    .btnToggle {
+        width: 100%; /* Ancho completo para el botón de tablas */
+    }
             table, th, td {
                 font-size: 12px;
                 padding: 4px;
