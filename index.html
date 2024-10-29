@@ -290,30 +290,43 @@ td:nth-child(7), td:nth-child(8), td:nth-child(9), td:nth-child(10), td:nth-chil
    <h1>Pondebaby</h1>
 <h2>Calcula la Ganancia o Pérdida Ponderal entre dos Fechas</h2>
 
+<!-- Peso y fecha inicial -->
 <label for="pesoInicio">Introduce el peso en la fecha inicial (kg):</label>
 <input type="number" id="pesoInicio" placeholder="Ej. 3.500" step="0.001" min="0" required>
 
 <label for="fechaInicio">Introduce la fecha inicial:</label>
 <input type="date" id="fechaInicio" required>
 
+<!-- Edad inicial en meses y días -->
+<label>Introduce la edad inicial:</label>
+<div style="display: flex; gap: 8px; align-items: center;">
+    <input type="number" id="edadMesesInicio" min="0" max="12" placeholder="Meses" style="width: 80px;" required>
+    <span>meses</span>
+    <input type="number" id="edadDiasInicio" min="0" max="30" placeholder="Días" style="width: 80px;" required>
+    <span>días</span>
+</div>
+
+<!-- Peso y fecha actual -->
 <label for="pesoActual">Introduce el peso actual (kg):</label>
 <input type="number" id="pesoActual" placeholder="Ej. 4.200" step="0.001" min="0" required>
 
 <label for="fechaActual">Introduce la fecha del pesaje actual:</label>
 <input type="date" id="fechaActual" required>
 
-<!-- Inputs adicionales para la edad en meses y días -->
-<h3>Introduce la Edad en la Fecha Inicial</h3>
+<!-- Edad actual en meses y días -->
+<label>Introduce la edad actual:</label>
+<div style="display: flex; gap: 8px; align-items: center;">
+    <input type="number" id="edadMesesActual" min="0" max="12" placeholder="Meses" style="width: 80px;" required>
+    <span>meses</span>
+    <input type="number" id="edadDiasActual" min="0" max="30" placeholder="Días" style="width: 80px;" required>
+    <span>días</span>
+</div>
 
-<label for="edadMeses">Edad en meses:</label>
-<input type="number" id="edadMeses" min="0" max="12" placeholder="Ej. 6" required>
-
-<label for="edadDias">Edad en días:</label>
-<input type="number" id="edadDias" min="0" max="30" placeholder="Ej. 15" required>
-
+<!-- Botón Calcular -->
 <div class="button-container">
     <button onclick="calcular()">Calcular</button>
 </div>
+
 
 
     <div class="result" id="resultados">
